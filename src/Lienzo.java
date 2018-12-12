@@ -15,7 +15,18 @@ public class Lienzo extends JPanel {
 	private int[] vector = new int[900];
 
 	private void ordenarVector() {
-		Arrays.sort(vector);
+		for (int i = 1; i< vector.length; i++) {
+			int j= 0;
+			while(j <i && vector [j] < vector[i])
+				j++;
+			
+			if(j < i) {
+				int aux = vector[i];
+				for(int k = i-1; k >=j ; k--)
+					vector [k+1] = vector[k];
+				vector[j] = aux;
+			}
+		}
 	}
 
 	private void llenarVector() {
@@ -39,7 +50,7 @@ public class Lienzo extends JPanel {
 				}
 			}
 		});
-
+		llenarVector();
 	}
 
 	@Override
